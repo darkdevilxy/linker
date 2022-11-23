@@ -1,0 +1,18 @@
+@mixin defaults {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  @include defaults();
+  flex-grow: 1;
+  background-color: gray;
+  overflow: hidden;
+}
+html {
+  @include defaults();
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}

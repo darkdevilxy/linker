@@ -1,0 +1,38 @@
+@media (min-width: 30rem) {
+  .app {
+    max-width: 30rem;
+  }
+}
+
+.app_container {
+  width: 100%;
+  height: 100%;
+  background-color: gray;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+
+  .app {
+    width: 100%;
+    background-color: darkgray;
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: auto auto;
+
+    .scrollabel_section {
+      flex-grow: 1;
+      overflow: scroll;
+
+      .add_button_container {
+        display: flex;
+        justify-content: center;
+        margin: 0.5rem 1rem 0.5rem 1rem;
+        padding: 0.5rem;
+        text-align: center;
+        color: burlywood;
+        background-color: blue;
+        border-radius: 0.5rem;
+      }
+    }
+  }
+}
