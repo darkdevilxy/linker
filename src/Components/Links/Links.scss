@@ -1,8 +1,41 @@
+
+$bg_color : rgb(51, 51, 51, 1);
+
+@mixin max_dimension($position:static){
+    width: 100%;
+    height: 100%;
+    position: $position;
+}
+
 .links_container{
+    &:hover{
+        &::before{
+            content: "";
+            @include max_dimension(absolute);
+            background-color: rgb(255, 255, 255, 0.2);
+        }
+        scale: 1.04;
+    }
     margin: 0.5rem 1rem 0.5rem 1rem;
-    padding: 0.5rem;
+    padding: 1.2rem;
     text-align: center;
     color: burlywood;
-    background-color: blue;
+    background-color:$bg_color;
     border-radius: 0.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+    gap: 1.5rem;
+    transition: all 0.5s ease-out;
+    overflow: hidden;
+}
+.link_image{
+    width: 2.2rem;
+    height: 2.2rem;
+    margin-left: auto;
+    // border: 1px solid red;
+}
+.link_text{
+    margin-right: auto;
+    // border: 1px solid red;
 }

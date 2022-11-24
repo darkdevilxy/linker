@@ -1,10 +1,67 @@
-.navbar{
-    text-align: center;
-    background-color: red;
-    width: 100%;
-    height: fit-content;
+@mixin pos_absolute_to_parent {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 300%;
+  background-repeat: repeat-x;
 }
-.title{
+
+@mixin infinite_animation($wave, $time: 10s) {
+  animation: $wave $time linear -0.125s infinite, swell 7s ease -1.25s infinite;
+}
+
+.navbar {
+  text-align: center;
+  background-color: rgb(51, 51, 51);
+  height: fit-content;
+  position: relative;
+
+  .title {
     margin: 0;
     padding: 0.5rem;
+    color: whitesmoke;
+    -webkit-text-stroke: 0.5px rgb(214, 204, 204);
+    scale: 1.2;
+  }
+  .left_wave {
+    @include pos_absolute_to_parent();
+    fill: rgb(0, 150, 255, 0.5);
+    left: 0;
+    @include infinite_animation(left_wave, 12s);
+  }
+  .right_wave {
+    @include pos_absolute_to_parent();
+    fill: rgba(172, 64, 0, 0.5);
+    right: 0;
+    background: repeat;
+    @include infinite_animation(right_wave, 9s);
+  }
+  @keyframes left_wave {
+    0% {
+      transform: translateX(0%);
+      opacity: 0.1;
+    }
+    50% {
+      transform: translateX(-25%);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(-50%);
+      opacity: 0.1;
+    }
+  }
+  @keyframes right_wave {
+    0% {
+      transform: translateX(0%);
+      opacity: 0.1;
+    }
+    50% {
+      transform: translateX(25%);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(50%);
+      opacity: 0.1;
+    }
+  }
 }
