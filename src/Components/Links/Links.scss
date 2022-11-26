@@ -1,41 +1,75 @@
-
-$bg_color : rgb(51, 51, 51, 1);
-
-@mixin max_dimension($position:static){
-    width: 100%;
-    height: 100%;
-    position: $position;
+$bg_color: rgb(51, 51, 51, 1);
+@mixin gradient($_red: red 0deg, $_green: green 0deg, $_blue: blue 0deg) {
+  background-image: conic-gradient($_red, $_green, $_blue, black);
 }
 
-.links_container{
-    &:hover{
-        &::before{
-            content: "";
-            @include max_dimension(absolute);
-            background-color: rgb(255, 255, 255, 0.2);
-        }
-        scale: 1.04;
+@mixin max_dimension($position: static, $_width: 100%, $_height: 100%) {
+  width: $_width;
+  height: $_height;
+  position: $position;
+  top: 0;
+  left: 0;
+}
+
+.gradient_container {
+  &:hover {
+    &::before {
+      content: "";
+      @include max_dimension(absolute);
+      background-color: rgb(255, 255, 255, 0.2);
     }
-    margin: 0.5rem 1rem 0.5rem 1rem;
+    &::after {
+      content: "";
+      @include max_dimension(absolute, 50rem, 50rem);
+      @include gradient(red, green, blue);
+      animation: background_gradient linear 2s infinite;
+      border-radius: 50%;
+      z-index: -1;
+      top: -450%;
+      left: -50%;
+    }
+    scale: 1.04;
+    .link_image {
+      transform: translateY(-30%);
+      border: none;
+    }
+  }
+
+  padding: 0.2rem;
+  border-radius: 0.5rem;
+  margin: 0.5rem 1rem 0.5rem 1rem;
+  overflow: hidden;
+  transition: all 0.5s ease-out;
+  background-color: $bg_color;
+
+  .links_container {
     padding: 1.2rem;
     text-align: center;
     color: burlywood;
-    background-color:$bg_color;
+    background-color: $bg_color;
     border-radius: 0.5rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
     place-items: center;
     gap: 1.5rem;
-    transition: all 0.5s ease-out;
     overflow: hidden;
-}
-.link_image{
-    width: 2.2rem;
-    height: 2.2rem;
-    margin-left: auto;
-    // border: 1px solid red;
-}
-.link_text{
-    margin-right: auto;
-    // border: 1px solid red;
+
+    .link_image {
+      width: 2.2rem;
+      height: 2.2rem;
+      margin-left: auto;
+      // border: 1px solid red;
+      transition: all 0.5s ease;
+    }
+    .link_text {
+      margin-right: auto;
+      // border: 1px solid red;
+    }
+  }
+
+  @keyframes background_gradient {
+    100% {
+      transform: rotate(-1turn);
+    }
+  }
 }

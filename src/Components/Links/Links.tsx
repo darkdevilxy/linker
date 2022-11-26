@@ -22,9 +22,11 @@ export default function ({ picture, link, title }: Props): JSX.Element {
   }
 
   return (
-    <div onClick={() => handle_click(link)} className="links_container">
-      <img src={image_url && image_url} alt="" className="link_image" />
-      <div className="link_text">{title}</div>
+    <div className="gradient_container">
+      <div onClick={() => handle_click(link)} className="links_container">
+        <img src={image_url && image_url} alt="" className="link_image" />
+        <div className="link_text">{title}</div>
+      </div>
     </div>
   );
 }

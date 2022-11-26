@@ -3,6 +3,9 @@ import "./navbar.scss";
 export default function (): JSX.Element {
   return (
     <nav className="navbar">
+      <div className="image_container">
+        <img src="" alt="" className="user_image" />
+      </div>
       <h1 className="title">@darkdevilxy</h1>
       <svg
         className="left_wave"
