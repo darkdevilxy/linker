@@ -1,12 +1,16 @@
+import { ref } from "firebase/storage";
+import { useStorage, useStorageDownloadURL } from "reactfire";
 import "./navbar.scss";
 
 export default function (): JSX.Element {
+  const user_photo_ref = ref(
+    useStorage(),
+    "gs://linker-18b75.appspot.com/users/bibek_humagain_49.jpg"
+  );
+  const { status, data: user_photo } = useStorageDownloadURL(user_photo_ref);
+
   return (
     <nav className="navbar">
-      <div className="image_container">
-        <img src="" alt="" className="user_image" />
-      </div>
-      <h1 className="title">@darkdevilxy</h1>
       <svg
         className="left_wave"
         xmlns="http://www.w3.org/2000/svg"
@@ -23,6 +27,10 @@ export default function (): JSX.Element {
       >
         <path d="M0,128L16,106.7C32,85,64,43,96,74.7C128,107,160,213,192,261.3C224,309,256,299,288,282.7C320,267,352,245,384,208C416,171,448,117,480,101.3C512,85,544,107,576,112C608,117,640,107,672,138.7C704,171,736,245,768,256C800,267,832,213,864,165.3C896,117,928,75,960,85.3C992,96,1024,160,1056,160C1088,160,1120,96,1152,80C1184,64,1216,96,1248,122.7C1280,149,1312,171,1344,149.3C1376,128,1408,64,1424,32L1440,0L1440,320L1424,320C1408,320,1376,320,1344,320C1312,320,1280,320,1248,320C1216,320,1184,320,1152,320C1120,320,1088,320,1056,320C1024,320,992,320,960,320C928,320,896,320,864,320C832,320,800,320,768,320C736,320,704,320,672,320C640,320,608,320,576,320C544,320,512,320,480,320C448,320,416,320,384,320C352,320,320,320,288,320C256,320,224,320,192,320C160,320,128,320,96,320C64,320,32,320,16,320L0,320Z"></path>
       </svg>
+      <div className="image_container">
+        <img src={user_photo} alt="" className="user_image" />
+      </div>
+      <h1 className="title">@darkdevilxy</h1>
     </nav>
   );
 }

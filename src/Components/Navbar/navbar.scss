@@ -10,11 +10,27 @@
   animation: $wave $time linear -0.125s infinite, swell 7s ease -1.25s infinite;
 }
 
+@media (max-width: 30rem ){
+  .navbar{
+    height: 5rem;
+    grid-template-columns: auto auto;
+  }
+}
+
 .navbar {
+
+  &::before{
+    content: "";
+    @include pos_absolute_to_parent();
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
   text-align: center;
   background-color: rgb(51, 51, 51);
-  height: fit-content;
   position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
   // border:1px solid green;
 
   .title {
@@ -22,12 +38,16 @@
     padding: 0.5rem;
     color: whitesmoke;
     -webkit-text-stroke: 0.5px rgb(214, 204, 204);
-    scale: 1.2;
   }
-  .user_image{
+  .image_container {
     height: fit-content;
     width: fit-content;
-    border: 1px solid red;
+    overflow: hidden;
+    *{
+      height: 5rem;
+      width: 5rem;
+      clip-path: circle(2.3rem at 50% 50%);
+    }
   }
   .left_wave {
     @include pos_absolute_to_parent();

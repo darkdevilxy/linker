@@ -1,7 +1,7 @@
 import "./Links.scss";
 
+import { FirebaseStorage, ref } from "firebase/storage";
 import { useStorage, useStorageDownloadURL } from "reactfire";
-import { ref } from "firebase/storage";
 
 interface Props {
   picture: string;
@@ -10,8 +10,7 @@ interface Props {
 }
 
 export default function ({ picture, link, title }: Props): JSX.Element {
-  const storage = useStorage();
-  const ref_storage = ref(storage, picture && picture);
+  const ref_storage = ref(useStorage(), picture && picture);
 
   const { status, data: image_url } = useStorageDownloadURL(
     ref_storage && ref_storage
@@ -22,8 +21,8 @@ export default function ({ picture, link, title }: Props): JSX.Element {
   }
 
   return (
-    <div className="gradient_container">
-      <div onClick={() => handle_click(link)} className="links_container">
+    <div onClick={() => handle_click(link)} className="gradient_container">
+      <div className="links_container">
         <img src={image_url && image_url} alt="" className="link_image" />
         <div className="link_text">{title}</div>
       </div>

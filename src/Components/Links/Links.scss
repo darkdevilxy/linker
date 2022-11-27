@@ -1,6 +1,6 @@
 $bg_color: rgb(51, 51, 51, 1);
-@mixin gradient($_red: red 0deg, $_green: green 0deg, $_blue: blue 0deg) {
-  background-image: conic-gradient($_red, $_green, $_blue, black);
+@mixin gradient($_red: red 120deg, $_green: green 120deg 240deg, $_blue: blue 240deg) {
+  background: repeating-conic-gradient($_red, $_green, $_blue);
 }
 
 @mixin max_dimension($position: static, $_width: 100%, $_height: 100%) {
@@ -21,7 +21,7 @@ $bg_color: rgb(51, 51, 51, 1);
     &::after {
       content: "";
       @include max_dimension(absolute, 50rem, 50rem);
-      @include gradient(red, green, blue);
+      @include gradient(red, green, red);
       animation: background_gradient linear 2s infinite;
       border-radius: 50%;
       z-index: -1;
@@ -39,8 +39,9 @@ $bg_color: rgb(51, 51, 51, 1);
   border-radius: 0.5rem;
   margin: 0.5rem 1rem 0.5rem 1rem;
   overflow: hidden;
-  transition: all 0.5s ease-out;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   background-color: $bg_color;
+  cursor: pointer;
 
   .links_container {
     padding: 1.2rem;
